@@ -27,4 +27,5 @@ model Room {
   id Int @id() @default(autoincrement())
   name String
   price Int
+  status String @default("use") // use, delete
 }
