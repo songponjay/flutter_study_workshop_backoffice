@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const UserController = require('./controllers/UserController');
 const RoomController = require('./controllers/RoomController');
 const RoomImageController = require("./controllers/RoomImageController");
+const RoomRentController = require("./controllers/RoomRentController");
 const cors = require('cors');
 const fileUpload = require("express-fileupload");
 
@@ -16,6 +17,11 @@ app.use("/uploads", express.static("uploads"));
 app.get('/', (req, res) => {
     res.send('API Worjing.');
 });
+app.post("/api/roomRent/isRent", (req, res) => 
+    RoomRentController.isRent(req, res)
+);
+app.post("/api/roomRent/rent", (req, res) => RoomRentController.rent(req, res));
+app.get("/api/roomRent/list", (req, res) => RoomRentController.list(req, res));
 app.post("/api/roomImage/create/:roomId", (req, res) =>
     RoomImageController.create(req,res)
 );
